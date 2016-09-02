@@ -65,7 +65,7 @@
                 */
             
                 print $week[0]. "<br>";
-                print $week[1];
+                print $week[1]. "<br>";
                 //array함수 사용하기
                 $month = array(1,2,3,4,5,6,7,8,9,10,11,12, "월");
             
@@ -79,9 +79,9 @@
                 $member["name"] = "member";
                 $member["age"] = 3;
                 $member["height"] = 150;
-                    print $member["age"];
+                    print $member["age"];//왠지 출력이 안된다.
                     print "<pre>";
-                    print_r ($member);
+                    print_r ($member);//print_r은 배열을 보기 편하게 출력하게 해주는 함수이다.
             
             ?>
         </ul>
@@ -97,5 +97,11 @@
                 }
             ?>
         </p>
+        <?php
+            $a = array("월", "화", "수", "목", "금", "토", "일");
+            foreach($a as $key){
+                print $key."<br>";
+            }
+        ?>
     </body>
 </html>
