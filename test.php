@@ -7,30 +7,14 @@
         <meta charset="UTF-8">
         <title>document</title>
         <style>
-            <?php
-                $bgColor = " ";
-                $CCode = array("1","2","3","4","5","6","7","8");
-                switch(count) {
-                    case 1:
-                        $bgColor = "#0f".$CCode[0];
-                    case 2:
-                        $bgColor = "#0f".$CCode[1];
-                    case 3:
-                        $bgColor = "#0f".$CCode[2];
-                    case 4:
-                        $bgColor = "#0f".$CCode[3];
-                    case 5:
-                        $bgColor = "#0f".$CCode[4];
-                    case 6:
-                        $bgColor = "#0f".$CCode[5];
-                    case 7:
-                        $bgColor = "#0f".$CCode[6];
-                    case 8:
-                        $bgColor = "#0f".$CCode[7];
-                }
-                    
-            ?>
-            .gugudan {background-color: <?php echo $bgColor; ?>;}
+            .gugudan:first-child {background-color: #0f1;}
+            .gugudan:nth-child(2) {background-color: #0f2;}
+            .gugudan:nth-child(3) {background-color: #0f3;}
+            .gugudan:nth-child(4) {background-color: #0f4;}
+            .gugudan:nth-child(5) {background-color: #0f5;}
+            .gugudan:nth-child(6) {background-color: #0f6;}
+            .gugudan:nth-child(7) {background-color: #0f7;}
+            .gugudan:last-child {background-color: #0f8;}
         </style>
     </head>
     <body>
@@ -85,18 +69,20 @@
             
             ?>
         </ul>
-        <p class = "gugudan">
+        <div>
             <?php
                 //for문
                 $count = 0;
                 for($i = 2; $i < 10; $i++) {
+                    print "<p class = 'gugudan'>";
                     for($j = 1; $j < 10; $j++) {
                         print $i."*".$j."=".$i * $j."<br>";
                     }
+                    print "</p>";
                     $count++;
                 }
             ?>
-        </p>
+        </div>
         <?php
             $a = array("월", "화", "수", "목", "금", "토", "일");
             foreach($a as $key){
