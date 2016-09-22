@@ -1,5 +1,14 @@
 <?php
-    $name = $_POST["search"];
+    $name = '%'.$_POST["search"].'%';
+    include 'kccdb.php';
+   
     
-    print (search."를 찾았습니다.");
+    $spl = "select * from member where last_name LIKE:last_name OR first_name LIKE:first_name;";
+    $stmh = $pdo->prepare($spl);
+    $stmh = $pd0->bindvalue(": last_name", $search, $search.PDD:: PARAM_STR);
+    $stmh = $pd0->bindvalue(": last_name", $search, $search.PDD:: PARAM_STR);
+    $stmh->execute();
+    $count = $stmh->rowcount();
+    
+    print ($count."건 찾았습니다.");
 ?>
