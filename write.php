@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +15,6 @@
         <input type="file" name="upload" id="fupload"><br/>
         <input type="submit" value="올리기">
     </form>
-    <?php
-        
-    ?>
+    
 </body>
 </html>

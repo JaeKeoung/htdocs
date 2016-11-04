@@ -1,4 +1,5 @@
 <?php
+require_once 'fileUploadConfig.php';
 $file = $_FILES['upload']['name'];//자료구조 이차원 배열이다. 만약 파일들을 다중첨부를 할 때, 이차원 배열을 이용할 수 있다.
 print_r($file);
 echo ('<br/>');
@@ -12,12 +13,21 @@ print microtime();//md5는 암호화고, microtime은 파일명이 겹칠경우 
 $file_path = $file_dir.md5(microtime()).$file;//$_FILES['upload']['name'];로 해도 되고.
 print $file_path;
 
+//이미지파일 경로
+$img_dir = "upload/";
+$img_path = $img_dir.$file;
+
 //파일 이동, 파일 사이즈 제한
-if($_FILES['upload']['size']<10){//1byte임.
+if($_FILES['upload']['size']<1000000){//1byte임.
     move_uploaded_file($_FILES['upload']['tmp_name'], $file_path);
+    $sql="insert into bar (upload) values (:upload)";//table(bar)에 업로드한 이미지 경로를 넣는 코드
+    $stmh = $pdo->prepare($sql);
+    $stmh->bindValue(":upload", $img_path);
+    $stmh->execute();
 }else{
     //용량이 초과되면 fileUpload페이지로 넘어가지 않고 머무르게한다.
     echo "<script>alert('용량초과')</script>";
     echo "<script>location.href='./write.php'</script>";//history를 하면 파일명이 올라가있는 상태 그대로 돌아가게된다.
 }
+
 ?>
