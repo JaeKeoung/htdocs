@@ -24,18 +24,23 @@ header {width: 900px;
     width: 900px;
     height: 400px;
     border: 1px solid #444;
+    display: inline;
+    position: absolute;
 }
 
-#map_show {
+#flag_show {
     width: 430px;
     height: 380px;
     border: 1px solid #444;
     margin: 10px 10px;
 }
 
-#contents #contry_info {
+#contents #country_info {
     width: 430px;
     height: 380px;
     border: 1px solid #444;
-    margin: 10px 10px;
+    position: absolute;
+    left: 455px;
+    top: 10px;
+    overflow: scroll;
 }

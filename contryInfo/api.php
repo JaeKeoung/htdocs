@@ -7,8 +7,8 @@ $queryParams .= '&' . urlencode('numOfRows') . '=' . urlencode('999'); /*검색�
 $queryParams .= '&' . urlencode('pageNo') . '=' . urlencode('1'); /*페이지 번호*/
 
 curl_setopt($ch, CURLOPT_URL, $url . $queryParams);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch, CURLOPT_HEADER, FALSE);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+curl_setopt($ch, CURLOPT_HEADER, 0);//원래 false였다. 근데 0으로만 인식됨. 같은 boolean타입 아닌가
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 $response = curl_exec($ch);
 curl_close($ch);
