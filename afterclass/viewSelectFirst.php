@@ -11,11 +11,12 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            if(($_POST['city']=='')||($_POST['city']==NULL)) {
+            $city = $_POST['city'];
+            if(($city=='')||($city==NULL)) {
                 echo "<script> alert( '구역을 선택해주십시오.' );";
                 echo "location.href='./selectFirst.php'</script>";
             }  else {
-                print $_POST['city'].'에서 살고계십니다.';
+                print $city.'에서 살고계십니다.';
             }
         ?>
     </body>
