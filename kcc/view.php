@@ -1,3 +1,15 @@
+<?php
+    include_once 'inc/dbCon.php';
+    $idx = $_GET['idx'];
+//    $hits = $_GET['hits'] + 1;
+    $sql = 'select*from board where idx=:idx;';//$idx로해도 되긴 하는데 뚫리기가 쉽다고해서 bindValue해서 :idx로 써야한다고 하셨다. update board set [hits=:hits+1] where idx=:idx;
+    $stmh = $pdo->prepare($sql);
+    $stmh->bindValue(":idx", $idx);//bindValue랑 쿼리문에 update만 지우면 정상적으로 나온다.
+//    $stmh->bindValue(":hits", $hits);
+    $stmh->execute();
+//    $result = $stmh->fetchAll();
+    $result = $stmh->fetch();
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -133,8 +145,23 @@
 					<div class="article_box">
                                             <table class="not_view">
                                                 <caption> <span class="blind">공지사항 안내</span></caption>
-                                                  
+                                                  <?php
+//                                                foreach ($result as $row) {
+//                                                    $subject = $row['subject'];
+//                                                    $hits = $row['hits'];
+//                                                    $content = $row['content'];
+                                                  $subject = $result['subject'];
+                                                  $hits = $result['hits'];
+                                                  $date = $result['date'];
+                                                  $content = $result['content'];
+                                                  $writer = $result['writer'];
+                                                ?>
+                                                <thead><tr><th>제목: <?=$subject?></th><th class='hits'>조회수: <?=$hits?></th></tr></thead><tbody><tr><td>날짜: <?=$date?></td><td class="view_con" colspan=2>내용: <?=$content?></td></tr>
+                                                <?php
+//                                                }
+                                                ?>
                                                 </tbody>
+                                                <tfoot><tr><td>작성자: <?=$writer?></td></tr></tfoot>
                                             </table>
                                             <div class='wrapBtnview'>
                                                 <?php

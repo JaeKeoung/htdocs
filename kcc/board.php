@@ -157,7 +157,7 @@
 //                                                        echo "<tr><td>$idx</td><td class='con'><a href='#'>$subject</a></td><td>$date</td><td>$hits</td><tr>";
                                                     //echo를 쓸 때는 }를 옮겨올 것.
                                                     ?>
-                                                    <tr><td><?=$idx?></td><td class='con'><a href='#'><?=$subject?></a></td><td><?=$date?></td><td><?=$hits?></td></tr>
+                                                    <tr><td><?=$idx?></td><td class='con'><a href='view.php?idx=<?=$idx?>'><?=$subject?></a></td><td><?=$date?></td><td><?=$hits?></td></tr>
                                                     <?php
                                                     }
                                                     ?>

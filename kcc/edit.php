@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+<?php
+    include_once 'inc/dbCon.php';
+    $idx = $_GET['idx'];
+    $sql = 'select*from board where idx=:idx';
+    $stmh = $pdo->prepare($sql);
+    $stmh->bindValue(":idx", $idx, PDO::PARAM_INT);
+    $stmh->execute();
+    $row = $stmh->fetch();
+    
+    $subject = $row['subject'];
+    $content = $row['content'];
+    $writer = $row['writer'];
+?>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -135,12 +148,12 @@
                                             <div class="article_box">
                                                 <table class="not_wrt">
                                                     <caption> <span class="blind">공지사항 작성</span></caption>
-                                                    <thead> <tr> <th class='write_caption'> 제목 </th> <td class='tb_biginp'> <input type='text' class="inptxt wsubject" id="subject" name='subject'/> </td> <th class='write_caption'> 작성자 </th>
-                                                            <td class='tb_smallinp'> <input type='text' class="inptxt w70" id="writer" readonly name='writer'/> </td> </tr></thead>
+                                                    <thead> <tr> <th class='write_caption'> 제목 </th> <td class='tb_biginp'> <input type='text' class="inptxt wsubject" id="subject" name='subject' value="<?=$subject?>"/> </td> <th class='write_caption'> 작성자 </th>
+                                                            <td class='tb_smallinp'> <input type='text' class="inptxt w70" id="writer" readonly name='writer' value="<?=$writer?>"/> </td> </tr></thead>
                                                     <tbody>
                                                         <tr> <th class='write_caption'> 내용 </th>
                                                             <td colspan='3'>
-                                                                <textarea class='write_content' id="txtContent" name='content'></textarea>
+                                                                <textarea class='write_content' id="txtContent" name='content'><?=$content?></textarea>
                                                             </td>
                                                         </tr>
                                                         <tr> <th class='write_caption'> 첨부파일 </th>
@@ -151,7 +164,7 @@
                                                     </tbody>
                                                 </table>
                                                 <div class='wrapBtnview'>
-                                                    <input type="hidden" name="idx" id="idx">
+                                                    <input type="hidden" name="idx" id="idx" value="<?=$idx?>">
                                                     <a href="#" onclick="$('#writeBoard').submit()" class="sp_coms btn_view">등록</a>
                                                     <a href="board.php" class="sp_coms btn_view">취소</a>
                                                 </div>
