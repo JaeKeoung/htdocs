@@ -1,14 +1,21 @@
 <?php
     include_once 'inc/dbCon.php';
     $idx = $_GET['idx'];
-//    $hits = $_GET['hits'] + 1;
-    $sql = 'select*from board where idx=:idx;';//$idx로해도 되긴 하는데 뚫리기가 쉽다고해서 bindValue해서 :idx로 써야한다고 하셨다. update board set [hits=:hits+1] where idx=:idx;
+    $sql = array('select * from board where idx=:idx',
+            'update board set hits=:hits where idx=:idx'
+            ); 
     $stmh = $pdo->prepare($sql);
+    $result = $stmh->fetchAll();
+    $hits = $result['hits'];
+    $stmh1->bindValue(":hits", $hits+1);
     $stmh->bindValue(":idx", $idx);//bindValue랑 쿼리문에 update만 지우면 정상적으로 나온다.
-//    $stmh->bindValue(":hits", $hits);
     $stmh->execute();
 //    $result = $stmh->fetchAll();
-    $result = $stmh->fetch();
+    
+    
+//    $sql1='update board set hits=:hits+1 where idx=:idx';//$idx로해도 되긴 하는데 뚫리기가 쉽다고해서 bindValue해서 :idx로 써야한다고 하셨다. update board set [hits=:hits+1] where idx=:idx;
+//    $stmh1 = $pdo->prepare($sql1);
+//    $stmh1->execute();
 ?>
 <!DOCTYPE html>
 <html lang="ko">
